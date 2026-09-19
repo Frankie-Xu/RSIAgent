@@ -1,0 +1,669 @@
+{
+  "cases": [
+    {
+      "case_id": "SYN-CASE-000",
+      "events": [
+        {
+          "case_id": "SYN-CASE-000",
+          "code": "8480-6",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-000-OBS-001",
+          "observed_at": "2026-01-01",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-000/observation-1",
+          "resource_type": "Observation",
+          "unit": "mmHg",
+          "valid_from": "2026-01-01",
+          "valid_to": null,
+          "value": 148.0
+        },
+        {
+          "case_id": "SYN-CASE-000",
+          "code": "8480-6",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-000-OBS-002",
+          "observed_at": "2026-01-03",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-000/observation-2",
+          "resource_type": "Observation",
+          "unit": "mmHg",
+          "valid_from": "2026-01-03",
+          "valid_to": null,
+          "value": 112.0
+        },
+        {
+          "case_id": "SYN-CASE-000",
+          "code": "SYN-OUTPATIENT",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-000-ENC-001",
+          "observed_at": "2026-01-03",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-000/encounter-1",
+          "resource_type": "Encounter",
+          "unit": "count",
+          "valid_from": "2026-01-03",
+          "valid_to": null,
+          "value": 1.0
+        }
+      ],
+      "split": "public",
+      "synthetic_patient_id": "SYN-PATIENT-000"
+    },
+    {
+      "case_id": "SYN-CASE-001",
+      "events": [
+        {
+          "case_id": "SYN-CASE-001",
+          "code": "8480-6",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-001-OBS-001",
+          "observed_at": "2026-01-04",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-001/observation-1",
+          "resource_type": "Observation",
+          "unit": "mmHg",
+          "valid_from": "2026-01-04",
+          "valid_to": null,
+          "value": 110.0
+        },
+        {
+          "case_id": "SYN-CASE-001",
+          "code": "8480-6",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-001-OBS-002",
+          "observed_at": "2026-01-06",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-001/observation-2",
+          "resource_type": "Observation",
+          "unit": "mmHg",
+          "valid_from": "2026-01-06",
+          "valid_to": null,
+          "value": 150.0
+        },
+        {
+          "case_id": "SYN-CASE-001",
+          "code": "SYN-OUTPATIENT",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-001-ENC-001",
+          "observed_at": "2026-01-06",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-001/encounter-1",
+          "resource_type": "Encounter",
+          "unit": "count",
+          "valid_from": "2026-01-06",
+          "valid_to": null,
+          "value": 1.0
+        }
+      ],
+      "split": "public",
+      "synthetic_patient_id": "SYN-PATIENT-001"
+    },
+    {
+      "case_id": "SYN-CASE-002",
+      "events": [
+        {
+          "case_id": "SYN-CASE-002",
+          "code": "8480-6",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-002-OBS-001",
+          "observed_at": "2026-01-07",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-002/observation-1",
+          "resource_type": "Observation",
+          "unit": "mmHg",
+          "valid_from": "2026-01-07",
+          "valid_to": null,
+          "value": 149.0
+        },
+        {
+          "case_id": "SYN-CASE-002",
+          "code": "8480-6",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-002-OBS-002",
+          "observed_at": "2026-01-09",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-002/observation-2",
+          "resource_type": "Observation",
+          "unit": "mmHg",
+          "valid_from": "2026-01-09",
+          "valid_to": null,
+          "value": 111.0
+        },
+        {
+          "case_id": "SYN-CASE-002",
+          "code": "SYN-OUTPATIENT",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-002-ENC-001",
+          "observed_at": "2026-01-09",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-002/encounter-1",
+          "resource_type": "Encounter",
+          "unit": "count",
+          "valid_from": "2026-01-09",
+          "valid_to": null,
+          "value": 1.0
+        }
+      ],
+      "split": "public",
+      "synthetic_patient_id": "SYN-PATIENT-002"
+    },
+    {
+      "case_id": "SYN-CASE-003",
+      "events": [
+        {
+          "case_id": "SYN-CASE-003",
+          "code": "8480-6",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-003-OBS-001",
+          "observed_at": "2026-01-10",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-003/observation-1",
+          "resource_type": "Observation",
+          "unit": "mmHg",
+          "valid_from": "2026-01-10",
+          "valid_to": null,
+          "value": 110.0
+        },
+        {
+          "case_id": "SYN-CASE-003",
+          "code": "8480-6",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-003-OBS-002",
+          "observed_at": "2026-01-12",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-003/observation-2",
+          "resource_type": "Observation",
+          "unit": "mmHg",
+          "valid_from": "2026-01-12",
+          "valid_to": null,
+          "value": 150.0
+        },
+        {
+          "case_id": "SYN-CASE-003",
+          "code": "SYN-OUTPATIENT",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-003-ENC-001",
+          "observed_at": "2026-01-12",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-003/encounter-1",
+          "resource_type": "Encounter",
+          "unit": "count",
+          "valid_from": "2026-01-12",
+          "valid_to": null,
+          "value": 1.0
+        }
+      ],
+      "split": "public",
+      "synthetic_patient_id": "SYN-PATIENT-003"
+    },
+    {
+      "case_id": "SYN-CASE-004",
+      "events": [
+        {
+          "case_id": "SYN-CASE-004",
+          "code": "8480-6",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-004-OBS-001",
+          "observed_at": "2026-01-13",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-004/observation-1",
+          "resource_type": "Observation",
+          "unit": "mmHg",
+          "valid_from": "2026-01-13",
+          "valid_to": null,
+          "value": 151.0
+        },
+        {
+          "case_id": "SYN-CASE-004",
+          "code": "8480-6",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-004-OBS-002",
+          "observed_at": "2026-01-15",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-004/observation-2",
+          "resource_type": "Observation",
+          "unit": "mmHg",
+          "valid_from": "2026-01-15",
+          "valid_to": null,
+          "value": 109.0
+        },
+        {
+          "case_id": "SYN-CASE-004",
+          "code": "SYN-OUTPATIENT",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-004-ENC-001",
+          "observed_at": "2026-01-15",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-004/encounter-1",
+          "resource_type": "Encounter",
+          "unit": "count",
+          "valid_from": "2026-01-15",
+          "valid_to": null,
+          "value": 1.0
+        }
+      ],
+      "split": "hidden",
+      "synthetic_patient_id": "SYN-PATIENT-004"
+    },
+    {
+      "case_id": "SYN-CASE-005",
+      "events": [
+        {
+          "case_id": "SYN-CASE-005",
+          "code": "8480-6",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-005-OBS-001",
+          "observed_at": "2026-01-16",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-005/observation-1",
+          "resource_type": "Observation",
+          "unit": "mmHg",
+          "valid_from": "2026-01-16",
+          "valid_to": null,
+          "value": 112.0
+        },
+        {
+          "case_id": "SYN-CASE-005",
+          "code": "8480-6",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-005-OBS-002",
+          "observed_at": "2026-01-18",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-005/observation-2",
+          "resource_type": "Observation",
+          "unit": "mmHg",
+          "valid_from": "2026-01-18",
+          "valid_to": null,
+          "value": 148.0
+        },
+        {
+          "case_id": "SYN-CASE-005",
+          "code": "SYN-OUTPATIENT",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-005-ENC-001",
+          "observed_at": "2026-01-18",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-005/encounter-1",
+          "resource_type": "Encounter",
+          "unit": "count",
+          "valid_from": "2026-01-18",
+          "valid_to": null,
+          "value": 1.0
+        }
+      ],
+      "split": "hidden",
+      "synthetic_patient_id": "SYN-PATIENT-005"
+    },
+    {
+      "case_id": "SYN-CASE-006",
+      "events": [
+        {
+          "case_id": "SYN-CASE-006",
+          "code": "8480-6",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-006-OBS-001",
+          "observed_at": "2026-01-19",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-006/observation-1",
+          "resource_type": "Observation",
+          "unit": "mmHg",
+          "valid_from": "2026-01-19",
+          "valid_to": null,
+          "value": 150.0
+        },
+        {
+          "case_id": "SYN-CASE-006",
+          "code": "8480-6",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-006-OBS-002",
+          "observed_at": "2026-01-21",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-006/observation-2",
+          "resource_type": "Observation",
+          "unit": "mmHg",
+          "valid_from": "2026-01-21",
+          "valid_to": null,
+          "value": 110.0
+        },
+        {
+          "case_id": "SYN-CASE-006",
+          "code": "SYN-OUTPATIENT",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-006-ENC-001",
+          "observed_at": "2026-01-21",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-006/encounter-1",
+          "resource_type": "Encounter",
+          "unit": "count",
+          "valid_from": "2026-01-21",
+          "valid_to": null,
+          "value": 1.0
+        }
+      ],
+      "split": "hidden",
+      "synthetic_patient_id": "SYN-PATIENT-006"
+    },
+    {
+      "case_id": "SYN-CASE-007",
+      "events": [
+        {
+          "case_id": "SYN-CASE-007",
+          "code": "8480-6",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-007-OBS-001",
+          "observed_at": "2026-01-22",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-007/observation-1",
+          "resource_type": "Observation",
+          "unit": "mmHg",
+          "valid_from": "2026-01-22",
+          "valid_to": null,
+          "value": 108.0
+        },
+        {
+          "case_id": "SYN-CASE-007",
+          "code": "8480-6",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-007-OBS-002",
+          "observed_at": "2026-01-24",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-007/observation-2",
+          "resource_type": "Observation",
+          "unit": "mmHg",
+          "valid_from": "2026-01-24",
+          "valid_to": null,
+          "value": 152.0
+        },
+        {
+          "case_id": "SYN-CASE-007",
+          "code": "SYN-OUTPATIENT",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-007-ENC-001",
+          "observed_at": "2026-01-24",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-007/encounter-1",
+          "resource_type": "Encounter",
+          "unit": "count",
+          "valid_from": "2026-01-24",
+          "valid_to": null,
+          "value": 1.0
+        }
+      ],
+      "split": "hidden",
+      "synthetic_patient_id": "SYN-PATIENT-007"
+    },
+    {
+      "case_id": "SYN-CASE-008",
+      "events": [
+        {
+          "case_id": "SYN-CASE-008",
+          "code": "8480-6",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-008-OBS-001",
+          "observed_at": "2026-01-25",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-008/observation-1",
+          "resource_type": "Observation",
+          "unit": "mmHg",
+          "valid_from": "2026-01-25",
+          "valid_to": null,
+          "value": 148.0
+        },
+        {
+          "case_id": "SYN-CASE-008",
+          "code": "8480-6",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-008-OBS-002",
+          "observed_at": "2026-01-27",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-008/observation-2",
+          "resource_type": "Observation",
+          "unit": "mmHg",
+          "valid_from": "2026-01-27",
+          "valid_to": null,
+          "value": 112.0
+        },
+        {
+          "case_id": "SYN-CASE-008",
+          "code": "SYN-OUTPATIENT",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-008-ENC-001",
+          "observed_at": "2026-01-27",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-008/encounter-1",
+          "resource_type": "Encounter",
+          "unit": "count",
+          "valid_from": "2026-01-27",
+          "valid_to": null,
+          "value": 1.0
+        }
+      ],
+      "split": "temporal_holdout",
+      "synthetic_patient_id": "SYN-PATIENT-008"
+    },
+    {
+      "case_id": "SYN-CASE-009",
+      "events": [
+        {
+          "case_id": "SYN-CASE-009",
+          "code": "8480-6",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-009-OBS-001",
+          "observed_at": "2026-01-28",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-009/observation-1",
+          "resource_type": "Observation",
+          "unit": "mmHg",
+          "valid_from": "2026-01-28",
+          "valid_to": null,
+          "value": 111.0
+        },
+        {
+          "case_id": "SYN-CASE-009",
+          "code": "8480-6",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-009-OBS-002",
+          "observed_at": "2026-01-30",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-009/observation-2",
+          "resource_type": "Observation",
+          "unit": "mmHg",
+          "valid_from": "2026-01-30",
+          "valid_to": null,
+          "value": 149.0
+        },
+        {
+          "case_id": "SYN-CASE-009",
+          "code": "SYN-OUTPATIENT",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-009-ENC-001",
+          "observed_at": "2026-01-30",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-009/encounter-1",
+          "resource_type": "Encounter",
+          "unit": "count",
+          "valid_from": "2026-01-30",
+          "valid_to": null,
+          "value": 1.0
+        }
+      ],
+      "split": "temporal_holdout",
+      "synthetic_patient_id": "SYN-PATIENT-009"
+    },
+    {
+      "case_id": "SYN-CASE-010",
+      "events": [
+        {
+          "case_id": "SYN-CASE-010",
+          "code": "8480-6",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-010-OBS-001",
+          "observed_at": "2026-01-31",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-010/observation-1",
+          "resource_type": "Observation",
+          "unit": "mmHg",
+          "valid_from": "2026-01-31",
+          "valid_to": null,
+          "value": 148.0
+        },
+        {
+          "case_id": "SYN-CASE-010",
+          "code": "8480-6",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-010-OBS-002",
+          "observed_at": "2026-02-02",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-010/observation-2",
+          "resource_type": "Observation",
+          "unit": "mmHg",
+          "valid_from": "2026-02-02",
+          "valid_to": null,
+          "value": 135.0
+        },
+        {
+          "case_id": "SYN-CASE-010",
+          "code": "SYN-OUTPATIENT",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-010-ENC-001",
+          "observed_at": "2026-02-02",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-010/encounter-1",
+          "resource_type": "Encounter",
+          "unit": "count",
+          "valid_from": "2026-02-02",
+          "valid_to": null,
+          "value": 1.0
+        }
+      ],
+      "split": "drift",
+      "synthetic_patient_id": "SYN-PATIENT-010"
+    },
+    {
+      "case_id": "SYN-CASE-011",
+      "events": [
+        {
+          "case_id": "SYN-CASE-011",
+          "code": "8480-6",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-011-OBS-001",
+          "observed_at": "2026-02-03",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-011/observation-1",
+          "resource_type": "Observation",
+          "unit": "mmHg",
+          "valid_from": "2026-02-03",
+          "valid_to": null,
+          "value": 112.0
+        },
+        {
+          "case_id": "SYN-CASE-011",
+          "code": "8480-6",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-011-OBS-002",
+          "observed_at": "2026-02-05",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-011/observation-2",
+          "resource_type": "Observation",
+          "unit": "mmHg",
+          "valid_from": "2026-02-05",
+          "valid_to": null,
+          "value": 136.0
+        },
+        {
+          "case_id": "SYN-CASE-011",
+          "code": "SYN-OUTPATIENT",
+          "cost_units": 1,
+          "event_id": "SYN-CASE-011-ENC-001",
+          "observed_at": "2026-02-05",
+          "provenance": "synthetic://generator/20260919/SYN-CASE-011/encounter-1",
+          "resource_type": "Encounter",
+          "unit": "count",
+          "valid_from": "2026-02-05",
+          "valid_to": null,
+          "value": 1.0
+        }
+      ],
+      "split": "drift",
+      "synthetic_patient_id": "SYN-PATIENT-011"
+    }
+  ],
+  "schema_version": 1,
+  "seed": 20260919,
+  "synthetic_only": true,
+  "tasks": [
+    {
+      "as_of": "2026-01-03",
+      "case_id": "SYN-CASE-000",
+      "code": "8480-6",
+      "query": "At 2026-01-03, classify the latest valid synthetic systolic observation as elevated (>= 130) or within_range.",
+      "split": "public",
+      "task_id": "TASK-SYN-CASE-000",
+      "threshold": 130.0
+    },
+    {
+      "as_of": "2026-01-06",
+      "case_id": "SYN-CASE-001",
+      "code": "8480-6",
+      "query": "At 2026-01-06, classify the latest valid synthetic systolic observation as elevated (>= 130) or within_range.",
+      "split": "public",
+      "task_id": "TASK-SYN-CASE-001",
+      "threshold": 130.0
+    },
+    {
+      "as_of": "2026-01-09",
+      "case_id": "SYN-CASE-002",
+      "code": "8480-6",
+      "query": "At 2026-01-09, classify the latest valid synthetic systolic observation as elevated (>= 130) or within_range.",
+      "split": "public",
+      "task_id": "TASK-SYN-CASE-002",
+      "threshold": 130.0
+    },
+    {
+      "as_of": "2026-01-12",
+      "case_id": "SYN-CASE-003",
+      "code": "8480-6",
+      "query": "At 2026-01-12, classify the latest valid synthetic systolic observation as elevated (>= 130) or within_range.",
+      "split": "public",
+      "task_id": "TASK-SYN-CASE-003",
+      "threshold": 130.0
+    },
+    {
+      "as_of": "2026-01-15",
+      "case_id": "SYN-CASE-004",
+      "code": "8480-6",
+      "query": "At 2026-01-15, classify the latest valid synthetic systolic observation as elevated (>= 130) or within_range.",
+      "split": "hidden",
+      "task_id": "TASK-SYN-CASE-004",
+      "threshold": 130.0
+    },
+    {
+      "as_of": "2026-01-18",
+      "case_id": "SYN-CASE-005",
+      "code": "8480-6",
+      "query": "At 2026-01-18, classify the latest valid synthetic systolic observation as elevated (>= 130) or within_range.",
+      "split": "hidden",
+      "task_id": "TASK-SYN-CASE-005",
+      "threshold": 130.0
+    },
+    {
+      "as_of": "2026-01-21",
+      "case_id": "SYN-CASE-006",
+      "code": "8480-6",
+      "query": "At 2026-01-21, classify the latest valid synthetic systolic observation as elevated (>= 130) or within_range.",
+      "split": "hidden",
+      "task_id": "TASK-SYN-CASE-006",
+      "threshold": 130.0
+    },
+    {
+      "as_of": "2026-01-24",
+      "case_id": "SYN-CASE-007",
+      "code": "8480-6",
+      "query": "At 2026-01-24, classify the latest valid synthetic systolic observation as elevated (>= 130) or within_range.",
+      "split": "hidden",
+      "task_id": "TASK-SYN-CASE-007",
+      "threshold": 130.0
+    },
+    {
+      "as_of": "2026-01-25",
+      "case_id": "SYN-CASE-008",
+      "code": "8480-6",
+      "query": "At 2026-01-25, classify the latest valid synthetic systolic observation as elevated (>= 130) or within_range.",
+      "split": "temporal_holdout",
+      "task_id": "TASK-SYN-CASE-008",
+      "threshold": 130.0
+    },
+    {
+      "as_of": "2026-01-28",
+      "case_id": "SYN-CASE-009",
+      "code": "8480-6",
+      "query": "At 2026-01-28, classify the latest valid synthetic systolic observation as elevated (>= 130) or within_range.",
+      "split": "temporal_holdout",
+      "task_id": "TASK-SYN-CASE-009",
+      "threshold": 130.0
+    },
+    {
+      "as_of": "2026-02-02",
+      "case_id": "SYN-CASE-010",
+      "code": "8480-6",
+      "query": "At 2026-02-02, classify the latest valid synthetic systolic observation as elevated (>= 140) or within_range.",
+      "split": "drift",
+      "task_id": "TASK-SYN-CASE-010",
+      "threshold": 140.0
+    },
+    {
+      "as_of": "2026-02-05",
+      "case_id": "SYN-CASE-011",
+      "code": "8480-6",
+      "query": "At 2026-02-05, classify the latest valid synthetic systolic observation as elevated (>= 140) or within_range.",
+      "split": "drift",
+      "task_id": "TASK-SYN-CASE-011",
+      "threshold": 140.0
+    }
+  ]
+}
