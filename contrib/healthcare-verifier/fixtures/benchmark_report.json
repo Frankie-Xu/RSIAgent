@@ -3,7 +3,7 @@
     "breadth": {
       "compute_units": 8.0,
       "evidence_coverage": 0.25,
-      "exploration_compute_units": 4.0,
+      "exploration_compute_units": 20.0,
       "human_cost": 6.4,
       "interaction_units": 8.0,
       "matched_budget_units": 16.0,
@@ -11,8 +11,8 @@
       "negative_transfer": 0.0,
       "quality": 0.25,
       "review_seconds": 32.0,
-      "simulated_compute_cost": 1.8,
-      "total_compute_units": 36.0,
+      "simulated_compute_cost": 2.6,
+      "total_compute_units": 52.0,
       "total_human_cost": 6.4,
       "unused_budget_units": 8.0,
       "verification_compute_units": 24.0
@@ -20,7 +20,7 @@
     "depth": {
       "compute_units": 14.0,
       "evidence_coverage": 1.0,
-      "exploration_compute_units": 4.0,
+      "exploration_compute_units": 20.0,
       "human_cost": 4.8,
       "interaction_units": 14.0,
       "matched_budget_units": 16.0,
@@ -28,8 +28,8 @@
       "negative_transfer": 0.0,
       "quality": 1.0,
       "review_seconds": 24.0,
-      "simulated_compute_cost": 2.1,
-      "total_compute_units": 42.0,
+      "simulated_compute_cost": 2.9,
+      "total_compute_units": 58.0,
       "total_human_cost": 4.8,
       "unused_budget_units": 2.0,
       "verification_compute_units": 24.0
@@ -37,7 +37,7 @@
     "frozen_memory": {
       "compute_units": 8.0,
       "evidence_coverage": 1.0,
-      "exploration_compute_units": 4.0,
+      "exploration_compute_units": 20.0,
       "human_cost": 3.2,
       "interaction_units": 8.0,
       "matched_budget_units": 16.0,
@@ -45,8 +45,8 @@
       "negative_transfer": 2.0,
       "quality": 0.75,
       "review_seconds": 16.0,
-      "simulated_compute_cost": 1.8,
-      "total_compute_units": 36.0,
+      "simulated_compute_cost": 2.6,
+      "total_compute_units": 52.0,
       "total_human_cost": 3.2,
       "unused_budget_units": 8.0,
       "verification_compute_units": 24.0
@@ -493,16 +493,24 @@
     "baseline_execution": "depth executes once; its cached result is reused for paired comparisons",
     "compute": "simulated units times 0.05 arbitrary units, not monetary",
     "equal_actual_compute": false,
-    "exploration": "assumed setup charge: one unit per public task; no curriculum executed",
+    "exploration": "executed public deterministic practice: counted actor reads plus verifier records; no LLM curriculum",
     "human": "assigned review seconds times 0.2 arbitrary units, not measured",
     "protocol_actor_reads": 30,
-    "protocol_modeled_compute": 114.0,
+    "protocol_modeled_compute": 122.0,
+    "setup_allocation": "setup executes once; each per-arm total includes its full amortization-free setup cost, so summing arm totals overcounts the shared setup",
     "verification": "modeled one unit per candidate event, outside actor cap"
   },
   "frozen_memory_hash_after": "34934b648ce098cd1270fe71ab345275d0ad9052258628b15fc81fadf99e6528",
   "frozen_memory_hash_before": "34934b648ce098cd1270fe71ab345275d0ad9052258628b15fc81fadf99e6528",
   "measurement": "synthetic deterministic proxies; matched caps, not equal actual cost",
   "seed": 20260919,
+  "setup_counts": {
+    "actor_calls": 4,
+    "actor_reads": 8,
+    "setup_calls": 1,
+    "verification_records": 12,
+    "verifier_calls": 4
+  },
   "split_summary": {
     "case_count": 12,
     "case_disjoint": true,

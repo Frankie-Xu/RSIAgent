@@ -30,8 +30,8 @@ def test_benchmark_reports_quality_cost_and_negative_transfer():
         assert metrics["interaction_units"] > 0
         assert metrics["human_cost"] > 0
         assert metrics["matched_budget_units"] == 16.0
-        assert metrics["exploration_compute_units"] == 4.0
-        assert metrics["total_compute_units"] == metrics["compute_units"] + 4.0 + metrics["verification_compute_units"]
+        assert metrics["exploration_compute_units"] == 20.0
+        assert metrics["total_compute_units"] == metrics["compute_units"] + 20.0 + metrics["verification_compute_units"]
         assert metrics["total_human_cost"] == metrics["human_cost"]
     assert report.aggregates["depth"]["quality"] > report.aggregates["breadth"]["quality"]
     assert report.aggregates["frozen_memory"]["negative_transfer"] >= 1

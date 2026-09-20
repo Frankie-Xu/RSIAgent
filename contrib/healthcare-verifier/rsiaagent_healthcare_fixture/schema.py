@@ -107,3 +107,4 @@ class BenchmarkReport:
     frozen_memory_hash_before: str
     frozen_memory_hash_after: str
     split_summary: Mapping[str, object]
+    setup_counts: Mapping[str, int]

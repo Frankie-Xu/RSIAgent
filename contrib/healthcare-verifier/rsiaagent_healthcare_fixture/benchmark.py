@@ -18,14 +18,30 @@ def _memory_hash(memory: dict[str, str]) -> str:
     return hashlib.sha256(payload).hexdigest()
 
 
-def _memory_from_public(tasks: Iterable[Task]) -> dict[str, str]:
-    # A procedure, not patient facts: it is safe to freeze and replay across cases.
+def _memory_from_public(cases, tasks, verifier):
+    """Actually execute public practice and record its read/check counts."""
+    public = tuple(task for task in tasks if task.split == "public")
+    by_case = {case.case_id: case for case in cases}
+    counts = {"setup_calls": 1, "actor_calls": 0, "verifier_calls": 0,
+              "actor_reads": 0, "verification_records": 0}
+    for task in public:
+        counts["actor_calls"] += 1
+        answer = _answer(by_case[task.case_id], task, "depth", {})
+        counts["actor_reads"] += answer.interaction_units
+        counts["verifier_calls"] += 1
+        result = verifier.verify(task, by_case[task.case_id], answer)
+        counts["verification_records"] += len(by_case[task.case_id].events)
+        if result.status != "pass":
+            raise ValueError("public setup practice rejected")
+    thresholds = {task.threshold for task in public}
+    if len(thresholds) != 1:
+        raise ValueError("public setup needs one observed task threshold")
     return {
         "schema_version": "1",
         "procedure": "select_latest_valid_observation",
-        "default_threshold": "130",
-        "source_tasks": ",".join(sorted(task.task_id for task in tasks if task.split == "public")),
-    }
+        "default_threshold": format(next(iter(thresholds)), "g"),
+        "source_tasks": ",".join(sorted(task.task_id for task in public)),
+    }, counts
 
 
 def _answer(case: Case, task: Task, strategy: str, memory: dict[str, str],
@@ -108,12 +124,11 @@ def split_summary(cases: Iterable[Case], tasks: Iterable[Task]) -> dict[str, obj
 
 def run_benchmark(cases: tuple[Case, ...], tasks: tuple[Task, ...], *, seed: int) -> BenchmarkReport:
     summary = split_summary(cases, tasks)
-    public_tasks = tuple(task for task in tasks if task.split == "public")
-    exploration_compute_units = len(public_tasks)
-    memory = _memory_from_public(public_tasks)
+    verifier = EvidenceProvenanceVerifier(seed=seed)
+    memory, setup_counts = _memory_from_public(cases, tasks, verifier)
+    exploration_compute_units = setup_counts["actor_reads"] + setup_counts["verification_records"]
     before = _memory_hash(memory)
     by_case = {case.case_id: case for case in cases}
-    verifier = EvidenceProvenanceVerifier(seed=seed)
     baseline = {}
     baseline_runs = {}
     for task in tasks:
@@ -174,7 +189,7 @@ def run_benchmark(cases: tuple[Case, ...], tasks: tuple[Task, ...], *, seed: int
         }
     after = _memory_hash(memory)
     return BenchmarkReport(
-        seed, tuple(attempts), aggregates, before, after, summary
+        seed, tuple(attempts), aggregates, before, after, summary, setup_counts
     )
 
 
