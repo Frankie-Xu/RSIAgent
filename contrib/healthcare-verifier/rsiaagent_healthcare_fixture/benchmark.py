@@ -7,7 +7,7 @@ from statistics import mean
 from typing import Iterable
 
 from .schema import ActorAnswer, BenchmarkAttempt, BenchmarkReport, Case, Task
-from .verifier import EvidenceProvenanceVerifier
+from .verifier import EvidenceProvenanceVerifier, available
 
 STRATEGIES = ("breadth", "depth", "frozen_memory")
 MATCHED_BUDGET_UNITS = 2
@@ -28,13 +28,28 @@ def _memory_from_public(tasks: Iterable[Task]) -> dict[str, str]:
     }
 
 
-def _answer(case: Case, task: Task, strategy: str, memory: dict[str, str]) -> ActorAnswer:
+def _answer(case: Case, task: Task, strategy: str, memory: dict[str, str],
+            *, budget: int = MATCHED_BUDGET_UNITS) -> ActorAnswer:
+    if type(budget) is not int or budget < 0:
+        raise ValueError("budget must be a nonnegative integer")
+    if strategy not in STRATEGIES:
+        raise ValueError(f"unknown strategy: {strategy}")
     observations = sorted(
-        (event for event in case.events if event.code == task.code and event.valid_from <= task.as_of),
+        (event for event in case.events if event.code == task.code and available(event, task.as_of)),
         key=lambda event: (event.observed_at, event.event_id),
     )
+    # Simulated indexed metadata is free; each returned value costs one read.
+    # Admission happens BEFORE reading values, including for depth exploration.
+    ordered = observations[-1:] if strategy == "frozen_memory" else observations
+    reads = []
+    limit = budget if strategy == "depth" else min(budget, 1)
+    for event in ordered:
+        if len(reads) >= limit:
+            break
+        reads.append(event)
+    observations = reads
     if not observations:
-        return ActorAnswer("unverified", (), 1, 1, 8)
+        return ActorAnswer("unverified", (), 0, 0, 8)
     if strategy == "breadth":
         chosen = observations[0]
         threshold = task.threshold
@@ -71,6 +86,14 @@ def split_summary(cases: Iterable[Case], tasks: Iterable[Task]) -> dict[str, obj
     for task in tasks:
         task_counts[task.split] = task_counts.get(task.split, 0) + 1
     assert_case_disjoint(tasks)
+    if len({c.case_id for c in cases}) != len(cases) or len({t.task_id for t in tasks}) != len(tasks):
+        raise ValueError("duplicate case/task identity")
+    by_case = {c.case_id: c for c in cases}
+    for task in tasks:
+        if task.case_id not in by_case or by_case[task.case_id].split != task.split:
+            raise ValueError("case/task split mismatch")
+        if task.split not in {"public", "hidden", "temporal_holdout", "drift"}:
+            raise ValueError("unknown split")
     return {
         "case_count": len(cases),
         "task_count": len(tasks),
@@ -78,24 +101,37 @@ def split_summary(cases: Iterable[Case], tasks: Iterable[Task]) -> dict[str, obj
         "task_splits": dict(sorted(task_counts.items())),
         "case_disjoint": True,
         "evaluation_splits": ["hidden", "temporal_holdout", "drift"],
-        "sealed_public_count": task_counts.get("public", 0),
+        "public_development_count": task_counts.get("public", 0),
+        "seal_scope": "logical development/evaluation separation; published synthetic cases are not secret",
     }
 
 
 def run_benchmark(cases: tuple[Case, ...], tasks: tuple[Task, ...], *, seed: int) -> BenchmarkReport:
+    summary = split_summary(cases, tasks)
     public_tasks = tuple(task for task in tasks if task.split == "public")
     exploration_compute_units = len(public_tasks)
     memory = _memory_from_public(public_tasks)
     before = _memory_hash(memory)
     by_case = {case.case_id: case for case in cases}
-    verifier = EvidenceProvenanceVerifier()
+    verifier = EvidenceProvenanceVerifier(seed=seed)
+    baseline = {}
+    baseline_runs = {}
+    for task in tasks:
+        if task.split != "public":
+            answer = _answer(by_case[task.case_id], task, "depth", {})
+            result = verifier.verify(task, by_case[task.case_id], answer)
+            baseline_runs[task.task_id] = (answer, result)
+            baseline[task.task_id] = float(result.status == "pass")
     attempts: list[BenchmarkAttempt] = []
     for strategy in STRATEGIES:
         for task in tasks:
             if task.split == "public":
                 continue
-            answer = _answer(by_case[task.case_id], task, strategy, memory)
-            result = verifier.verify(task, by_case[task.case_id], answer)
+            if strategy == "depth":
+                answer, result = baseline_runs[task.task_id]
+            else:
+                answer = _answer(by_case[task.case_id], task, strategy, memory)
+                result = verifier.verify(task, by_case[task.case_id], answer)
             attempts.append(
                 BenchmarkAttempt(
                     strategy=strategy,
@@ -109,8 +145,11 @@ def run_benchmark(cases: tuple[Case, ...], tasks: tuple[Task, ...], *, seed: int
                     compute_units=answer.compute_units,
                     matched_budget_units=MATCHED_BUDGET_UNITS,
                     unused_budget_units=MATCHED_BUDGET_UNITS - answer.compute_units,
-                    human_cost=round(answer.review_seconds * 0.2 + answer.compute_units * 0.05, 2),
-                    negative_transfer=int(strategy == "frozen_memory" and task.split == "drift" and result.status != "pass"),
+                    human_cost=round(answer.review_seconds * 0.2, 2),
+                    negative_transfer=int(strategy == "frozen_memory" and baseline[task.task_id] > float(result.status == "pass")),
+                    baseline_quality=baseline[task.task_id],
+                    quality_delta=float(result.status == "pass") - baseline[task.task_id],
+                    verification_compute_units=len(by_case[task.case_id].events),
                 )
             )
     aggregates: dict[str, dict[str, float]] = {}
@@ -125,14 +164,17 @@ def run_benchmark(cases: tuple[Case, ...], tasks: tuple[Task, ...], *, seed: int
             "matched_budget_units": float(sum(row.matched_budget_units for row in rows)),
             "unused_budget_units": float(sum(row.unused_budget_units for row in rows)),
             "exploration_compute_units": float(exploration_compute_units),
-            "total_compute_units": float(exploration_compute_units + sum(row.compute_units for row in rows)),
+            "verification_compute_units": float(sum(row.verification_compute_units for row in rows)),
+            "total_compute_units": float(exploration_compute_units + sum(row.compute_units + row.verification_compute_units for row in rows)),
             "human_cost": round(sum(row.human_cost for row in rows), 2),
-            "total_human_cost": round(sum(row.human_cost for row in rows) + exploration_compute_units * 0.05, 2),
+            "total_human_cost": round(sum(row.human_cost for row in rows), 2),
+            "simulated_compute_cost": round((exploration_compute_units + sum(row.compute_units + row.verification_compute_units for row in rows)) * 0.05, 2),
+            "mean_quality_delta": mean(row.quality_delta for row in rows),
             "negative_transfer": float(sum(row.negative_transfer for row in rows)),
         }
     after = _memory_hash(memory)
     return BenchmarkReport(
-        seed, tuple(attempts), aggregates, before, after, split_summary(cases, tasks)
+        seed, tuple(attempts), aggregates, before, after, summary
     )
 
 

@@ -21,7 +21,7 @@ def test_benchmark_reports_quality_cost_and_negative_transfer():
     }
     assert report.split_summary["evaluation_splits"] == ["hidden", "temporal_holdout", "drift"]
     for metrics in report.aggregates.values():
-        assert set(metrics) == {
+        assert set(metrics) >= {
             "quality", "evidence_coverage", "interaction_units", "review_seconds", "compute_units",
             "matched_budget_units", "unused_budget_units", "exploration_compute_units",
             "total_compute_units", "human_cost", "total_human_cost", "negative_transfer",
@@ -31,8 +31,8 @@ def test_benchmark_reports_quality_cost_and_negative_transfer():
         assert metrics["human_cost"] > 0
         assert metrics["matched_budget_units"] == 16.0
         assert metrics["exploration_compute_units"] == 4.0
-        assert metrics["total_compute_units"] == metrics["compute_units"] + 4.0
-        assert metrics["total_human_cost"] > metrics["human_cost"]
+        assert metrics["total_compute_units"] == metrics["compute_units"] + 4.0 + metrics["verification_compute_units"]
+        assert metrics["total_human_cost"] == metrics["human_cost"]
     assert report.aggregates["depth"]["quality"] > report.aggregates["breadth"]["quality"]
     assert report.aggregates["frozen_memory"]["negative_transfer"] >= 1
     assert report.frozen_memory_hash_before == report.frozen_memory_hash_after
@@ -47,7 +47,7 @@ def test_each_strategy_receives_the_same_per_attempt_budget():
 
 
 def test_frozen_memory_is_not_mutated_by_evaluation():
-    cases = build_cases()
+    cases = build_cases(7)
     tasks = build_tasks(cases)
     first = run_benchmark(cases, tasks, seed=7)
     second = run_benchmark(cases, tasks, seed=7)

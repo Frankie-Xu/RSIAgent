@@ -94,6 +94,9 @@ class BenchmarkAttempt:
     unused_budget_units: int
     human_cost: float
     negative_transfer: int
+    baseline_quality: float
+    quality_delta: float
+    verification_compute_units: int
 
 
 @dataclass(frozen=True)

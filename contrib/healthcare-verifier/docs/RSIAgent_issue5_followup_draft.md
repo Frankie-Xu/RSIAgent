@@ -1,31 +1,19 @@
-# Draft: matched-budget synthetic verifier benchmark for Issue #5
+# Local Issue #5 discussion draft — not sent
 
-**Status:** local draft only; not submitted or sent.
+This fork adds a synthetic matched-cap diagnostic, not evidence resolving the real matched-resource performance question. Actor reads have an enforced common cap; actual costs may differ. Setup/exploration charges and verifier compute are separately reported, and human time/cost is explicitly simulated. Negative transfer is the quality loss against a paired no-memory depth baseline, not a drift label.
 
-**Proposed title:** Add a deterministic matched-budget benchmark for exploration and frozen-memory reuse
+Source checks reject future observations (including backfilled facts), altered sources, cross-case evidence, duplicates and non-finite values. Development and evaluation cases are disjoint but all are public synthetic regression fixtures, not a confidential holdout. A thin contract bridge uses real upstream task identity, Findings and ArtifactSink objects without reading private histories or invoking a VM/model.
 
-## Problem
+## Validation
 
-Issue #5 asks for a control that separates recursive curriculum/memory benefit from extra interaction and target practice. The current projectless draft provides a small synthetic control surface without changing the upstream runtime or benchmark claims.
+30 contribution tests pass, including byte-exact regeneration of both JSON fixtures and real upstream-object contract tests. Run from repository root:
 
-## Proposed contribution
+The complete upstream suite on this macOS host reports 783 passed, 2 skipped and 8 failures in unchanged Linux-oriented provisioning/isolation tests; see PHASE3.md. It is not reported as a passing full release check.
 
-Add a maintainer-approved synthetic fixture that:
+```bash
+uv run --python 3.12 --with-requirements requirements-dev.txt python -m pytest -q contrib/healthcare-verifier/tests
+uv run --python 3.12 --with-requirements requirements-dev.txt python tools/check_rsi_release.py
+uv run --python 3.12 python -m compileall -q contrib/healthcare-verifier
+```
 
-- generates FHIR/Synthea-style records from seed `20260919`;
-- keeps public, hidden, temporal-holdout, case-disjoint, and drift slices separate;
-- verifies conclusions from cited public evidence only, without Actor private reasoning or memory;
-- compares breadth, depth, and frozen-memory reuse under explicit interaction/compute/review budgets;
-- emits a sealed split summary for public, hidden, temporal-holdout, case-disjoint, and drift cases;
-- gives every evaluated strategy the same per-attempt budget, while separately recording actual compute, unused budget, public exploration cost, total cost, review seconds, human-cost proxy, and negative transfer;
-- turns future citations, cross-case citations, stale conclusions, and frozen-memory mutation into regression tests.
-
-## Validation in this draft
-
-The independent fixture passes 14 tests under a temporary `uv` pytest environment. Run `uv run --with pytest --python python3 -m pytest -q`, then `python3 tools/generate_fixture.py`; the generated report is in `fixtures/benchmark_report.json`. The frozen memory hash is identical before and after evaluation. The draft does not invoke model APIs, Docker, `/dev/kvm`, OSWorld, ALE, or production data.
-
-## Maintainer questions before an upstream change
-
-1. Should this remain a synthetic companion fixture or live under `benchmarks/` and `tests/`?
-2. Which released benchmark lock and budget fields should define the compute-matched control?
-3. Should the official report include this as a diagnostic protocol separate from headline benchmark scores?
+Before a real experiment, agree on source trust ownership, public candidate fields, official lock, full exploration/verification/inference budgets and an independent acceptance cohort. No clinical or real-model conclusion is claimed by the deterministic fixtures.
